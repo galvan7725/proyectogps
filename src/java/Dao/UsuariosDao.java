@@ -21,7 +21,7 @@ import java.util.List;
 public class UsuariosDao {
     
     public List<Usuarios> listar() throws SQLException{
-        List<Usuarios> lista = null ;
+        List<Usuarios> lista;
         try {
             PreparedStatement ps = null;
             ResultSet rs = null;
@@ -29,10 +29,11 @@ public class UsuariosDao {
             Connection con = conn.getConexion();
             
             String sql = "select * from vista_usuarios;" ;
-            System.out.println(sql);
+            System.out.println("sql usuarios");
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             lista= new ArrayList();
+            
             while(rs.next()){
             Usuarios users = new Usuarios();
             users.setId(rs.getInt("id"));
@@ -40,19 +41,20 @@ public class UsuariosDao {
             users.setaPaterno(rs.getString("aPaterno"));
             users.setaMaterno(rs.getString("aMaterno"));
             users.setFechaNac(rs.getString("fechaNac"));
-            users.setDescrpcion(rs.getString("descripcion"));
+            users.setDescrpcion(rs.getString("descrpcion"));
             users.setFoto(rs.getString("nombre"));
             users.setEstado(rs.getInt("estado"));
             
             
             lista.add(users);
             }
-            
+            return lista;
         } catch (Exception e) {
         e.printStackTrace();
         }
+        return null;
         
-        return lista;
+        
     }
     
 }

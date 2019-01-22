@@ -7,8 +7,14 @@ package Beans;
 
 import Dao.UsuariosDao;
 import Model.Usuarios;
+import java.io.Serializable;
 import java.util.List;
+import javax.faces.bean.ApplicationScoped;
 import javax.faces.bean.SessionScoped;
+import javax.faces.view.ViewScoped;
+
+
+
 import javax.inject.Named;
 
 /**
@@ -16,8 +22,8 @@ import javax.inject.Named;
  * @author galva
  */
 @Named(value="usuariosBean")
-@SessionScoped
-public class usuariosBean {
+@ViewScoped
+public class usuariosBean implements Serializable{
     
     private List<Usuarios> lstUsuarios;
     private Usuarios usuarios = new Usuarios();
@@ -43,7 +49,8 @@ public class usuariosBean {
         UsuariosDao dao;
         try {
             dao = new UsuariosDao();
-            return lstUsuarios=dao.listar();
+            this.lstUsuarios=dao.listar();
+            return lstUsuarios;
             
         } catch (Exception e) {
             throw e;

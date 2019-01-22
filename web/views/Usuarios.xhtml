@@ -14,8 +14,9 @@
 
                 <h:form id="ft">
 
-                    <p:dataTable id="dataP" value="#{usuariosBean.listar}" var="u" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                    <p:dataTable id="dataP" value="#{usuariosBean.listar()}" var="u" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                                  rowsPerPageTemplate="5,10,15" emptyMessage="Sin coincidencias" reflow="true" stickyHeader="false">
+                        <!--
                         <f:facet name="{Exporters}">
                             <h:commandLink>
                                 <p:graphicImage library="images" name="pdf.png" width="24"/>
@@ -27,18 +28,19 @@
                             </h:commandLink>
 
                         </f:facet>
-
+                        -->
+                        
                         <p:column headerText="Id" filterBy="#{u.id}" filterMatchMode="contains">    
                             <p:outputLabel value="#{u.id}"/>
                         </p:column>
                         <p:column headerText="Nombre" filterBy="#{u.nombre}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.nombre}"/>
                         </p:column>
-                        <p:column headerText="Descripcion" filterBy="#{u.getaPaterno}" filterMatchMode="contains">
-                            <p:outputLabel value="#{u.getaPaterno}"/>
+                        <p:column headerText="Descripcion" filterBy="#{u.aPaterno}" filterMatchMode="contains">
+                            <p:outputLabel value="#{u.aPaterno}"/>
                         </p:column>
-                        <p:column headerText="Descripcion" filterBy="#{u.getaMaterno}" filterMatchMode="contains">
-                            <p:outputLabel value="#{u.getaMaterno}"/>
+                        <p:column headerText="Descripcion" filterBy="#{u.aMaterno}" filterMatchMode="contains">
+                            <p:outputLabel value="#{u.aMaterno}"/>
                         </p:column>
                         <p:column headerText="Descripcion" filterBy="#{u.fechaNac}" filterMatchMode="contains">
                             <p:outputLabel value="#{u.fechaNac}"/>
@@ -48,7 +50,7 @@
                         </p:column>
                         <p:column headerText="foto">
                             
-                            <h:graphicImage value="images/Users/#{u.nombre}.jpg" width="50" height="50"></h:graphicImage>
+                            <h:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{u.foto}.jpg" width="50" height="50"></h:graphicImage>
                            
                         </p:column>
                         <p:column headerText="Estado" filterBy="#{u.estado}" filterMatchMode="contains">
