@@ -40,12 +40,8 @@
                             <p:spacer width="10" height="10" />
                             <p:graphicImage id="img" url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" style="width: 50px; height: 100%; border-radius: 20%; margin-top: 5px;" ></p:graphicImage>
                             <p:overlayPanel id="imgPanel" for="img" showEffect="blind" hideEffect="explode" showEvent="mouseover" hideEvent="mousedown"
-                                            dismissable="false" showCloseIcon="true">
-                                <p:imageSwitch effect="fade" style="width:300px;height:188px;">
-                                    <ui:repeat value="#{imageSwitchView.images}" var="image">
-                                        <p:graphicImage name="/demo/images/nature/#{image}" width="300" />
-                                    </ui:repeat>
-                                </p:imageSwitch>
+                                            dismissable="true" showCloseIcon="true">                                                             
+                                        <p:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" width="300" />                            
                             </p:overlayPanel>
                             <p:spacer width="10" height="10" />
                             <p:commandButton value="#{userBean.nombre}" icon="ui-icon-person" onclick="PF('dlg').show()"/>
