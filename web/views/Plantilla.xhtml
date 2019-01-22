@@ -1,0 +1,118 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <!-- <h:outputStylesheet name="./css/default.css"/>
+         <h:outputStylesheet name="./css/cssLayout.css"/>
+        -->
+        <link href="#{appBean.baseUrl}resources/css/default.css" type="text/css" rel="stylesheet"/>
+        <link href="#{appBean.baseUrl}resources/css/cssLayout.css" type="text/css" rel="stylesheet"/>
+        <link href="#{appBean.baseUrl}resources/css/plantilla.css" type="text/css" rel="stylesheet"/>
+        <f:event type="preRenderView" listener="#{loginController.verificarSesion()}"/>
+        <!--<f:event type="preRenderView" listener="#{galeriaBean.init()}"/> -->
+        <f:event type="preRenderView" listener="#{userBean.inicializarDatos()}"/>
+
+        <title>ProyectoGPS2.0</title>
+    </h:head>
+
+    <h:body>
+
+        <!-- Superior -->
+        <div id="top" class="ui-widget-header ui-corner-all">
+            <ui:insert name="top">
+                <h:form>     
+
+                    <p:toolbar>
+                        <f:facet name="left">
+
+                            <p:commandButton type="button" value="===" icon="ui-icon-newwin" onclick="PF('sidebar1').show()"/>
+                            <p:outputLabel value="ProyectoGPS"/>
+                        </f:facet>
+
+                        <f:facet name="right" >
+                            <p:button value="Home" icon=" ui-icon-home " href="#{appBean.baseUrl}faces/views/Index.xhtml"/>
+                            <p:spacer width="10" height="10" />
+                            <p:graphicImage id="img" url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" style="width: 50px; height: 100%; border-radius: 20%; margin-top: 5px;" ></p:graphicImage>
+                            <p:overlayPanel id="imgPanel" for="img" showEffect="blind" hideEffect="explode" showEvent="mouseover" hideEvent="mousedown"
+                                            dismissable="false" showCloseIcon="true">
+                                <p:imageSwitch effect="fade" style="width:300px;height:188px;">
+                                    <ui:repeat value="#{imageSwitchView.images}" var="image">
+                                        <p:graphicImage name="/demo/images/nature/#{image}" width="300" />
+                                    </ui:repeat>
+                                </p:imageSwitch>
+                            </p:overlayPanel>
+                            <p:spacer width="10" height="10" />
+                            <p:commandButton value="#{userBean.nombre}" icon="ui-icon-person" onclick="PF('dlg').show()"/>
+                        </f:facet>
+
+                    </p:toolbar>
+                    <p:dialog header="Effects" widgetVar="dlg" showEffect="explode" hideEffect="explode" width="400" height="350" resizable="false">
+                        <p:panel id="basic" header="#{userBean.foto}" footer="#{userBean.datos}"  style="text-align: center; margin-bottom:20px">
+                            <p:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" width="100%"></p:graphicImage>
+                        </p:panel>
+                        <p:button value="Usuarios" icon="ui-icon-person" href="#{appBean.baseUrl}faces/views/Usuarios.xhtml"/>
+                        <p:commandButton value="Cerrar" icon="ui-icon-person" style="float: right;" onclick="PF('dlg').hide()"/>
+                    </p:dialog>
+                </h:form>
+
+            </ui:insert>
+        </div>
+        <!-- Izquierda-->
+        <div class="left_content" style="padding: 0px;">
+            <ui:insert name="left">
+                <h:form>
+                    <p:sidebar widgetVar="sidebar1" baseZIndex="10000">
+                        <h1 style="font-weight:normal">ProyectoGPS</h1>
+                        <h3>Opciones:</h3>
+                        <p:menu toggleable="true" style="width: 100%;">
+                            <p:submenu label="Ajax" style="">
+                                <p:menuitem value="Save" action="#{menuView.save}"  icon="pi pi-save" />
+                                <p:menuitem value="Update" action="#{menuView.update}"  icon="pi pi-refresh"/>
+                            </p:submenu>
+                            <p:separator  style="width:98%;height:20px; margin-top: 5px; margin-bottom: 5px;" />
+                            <p:submenu label="Productos">
+                                <p:menuitem value="Todos los productos" url="#{appBean.baseUrl}faces/views/Productos.xhtml"  ajax="false" icon=" ui-icon-cart"/>
+                                <p:menuitem value="Ctegorias" ajax="false" icon=" ui-icon-cart"/>
+                            </p:submenu>
+                            <p:separator  style="width:98%;height:20px; margin-top: 5px; margin-bottom: 5px;" />
+                            <p:submenu label="Usuarios">
+                                <p:menuitem value="Administrar U." url="#{appBean.baseUrl}faces/views/Usuarios.xhtml" icon="ui-icon-person"/>
+                                <p:menuitem value="Internal" icon="/resources/images/icons/cart.png"/>
+                            </p:submenu>
+                        </p:menu>
+                        <p:commandButton value="Cancel" style="float: right;" oncomplete="PF('sidebar1').hide()"/>
+                    </p:sidebar>
+                </h:form>
+
+            </ui:insert>
+        </div>
+
+        <!-- centro -->
+        <div class="center_content" style="background-color: rgba(226,14,222,0.12);">
+            <ui:insert name="content">
+
+            </ui:insert>
+        </div>
+
+        <!-- Inferior -->
+        <div id="bottom" class="ui-widget-header ui-corner-all" >
+            <ui:insert name="bottom">&copy; 2019 En Desarrollo desde Agosto/2018
+
+            </ui:insert>
+
+        </div>
+
+
+
+        <script>
+            console.log("Carga correcta de los elementos");
+        </script>
+    </h:body>
+
+</html>

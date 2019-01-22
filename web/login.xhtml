@@ -1,0 +1,72 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Login</title>
+         <link href="./resources/css/login.css" type="text/css" rel="stylesheet"/>
+         
+    </h:head>
+    <h:body>
+        <div class="conteiner2">
+                        <h:form>
+                    <h3 style="margin-top:0; color: white;">Cliente</h3>
+                    <p:clock />
+
+                    <h3 style="color: white;">Servidor</h3>
+                    <p:clock pattern="HH:mm:ss dd.MM.yyyy" mode="server" />
+
+                    <h3 style="color: white;">Analogico</h3>
+                    <p:clock displayMode="analog" />
+                        </h:form>
+              </div>
+        
+       <div class="conteiner">
+            
+            <p:growl id="growl" showDetail="true" life="3000"/>
+            <h:form id="formLogin">
+                <p:panel header="Ingresar Usuario y Clave" style="text-align: center;">
+                    <h:panelGrid columns="2" cellpadding="5">
+                        <h:outputLabel for="username" value="Usuario"/>
+                        <p:inputText value="#{loginBean.usuario1}" id="username" required="true" label="username"/>
+                    
+                        <h:outputLabel for="password" value="Contraseña"/>
+                      
+                        <p:password value="#{loginBean.clave1}" id="password" required="true" label="password"/>
+                        
+                       <p:outputLabel for="console" value="Rol:" />
+                       <p:selectOneRadio id="console" value="#{loginBean.rol}" required="true">
+                                <f:selectItem itemLabel="Usuario" itemValue="2" />
+                                <f:selectItem itemLabel="Administrador" itemValue="1" />                                
+                            </p:selectOneRadio>
+                        
+                        
+                      
+                       <f:facet name="footer" id="footer">
+                            <p:commandButton id="loginButton" value="Login" update=":growl" actionListener="#{loginBean.login(actionEvent)}" icon="ui-icon-power" oncomplete="handleLoginRequest(xhr, status, args)"/>
+                        </f:facet>
+                    </h:panelGrid>
+                </p:panel>
+            </h:form>
+      
+        </div>
+        
+        
+        
+        
+     
+        <script type="text/javascript">
+            function handleLoginRequest(xhr, status, args){
+                if(args.validationFailed || !args.loggedIn){
+                    jQuery('#formLogin').effect("shake", {times:3}, 100);
+                    console.log("Error");
+                }else{
+                    location.href = args.ruta;
+                }
+            }
+        </script>
+    </h:body>
+</html>
+
