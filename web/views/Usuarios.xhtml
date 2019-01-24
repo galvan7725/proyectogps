@@ -50,7 +50,7 @@
                         </p:column>
                         <p:column headerText="foto" style="text-align: center;">
                             
-                            <h:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{u.foto}.jpg" width="70" height="50"></h:graphicImage>
+                            <h:graphicImage value="RenderImage?Image_id=#{u.id}" width="70" height="50"></h:graphicImage>
                            
                         </p:column>
                         <p:column headerText="Estado" filterBy="#{u.estado}" filterMatchMode="contains" style="text-align: center;">
@@ -58,13 +58,13 @@
                         </p:column>
                         
                         <p:column headerText="Util" exportable="false" style="text-align: center;">
-                            <p:commandLink   oncomplete="PF('wldDatos').show();" update=":DlgDatos" partialSubmit="false">
-                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/xls.png" width="24" title="Modificar" height="20"/>
+                            <p:commandLink     partialSubmit="false">
+                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/edit.png" width="24" title="Modificar" height="20"/>
                                 <p:outputLabel value="Modificar"/>
                             </p:commandLink>
                             <p:spacer height="20"/>
-                            <p:commandLink   oncomplete="PF('wldOp').show();" update="dataP" partialSubmit="false">
-                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/xls.png" width="24" title="Eliminar"  height="20px"/>
+                            <p:commandLink    update="dataP" partialSubmit="false">
+                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/exit.png" width="24" title="Eliminar"  height="20px"/>
                                 <p:outputLabel value="Eliminar"/>
                             </p:commandLink>
                         </p:column>

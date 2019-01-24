@@ -33,13 +33,13 @@ import javax.servlet.http.HttpServletResponse;
         ResultSet rs;
         InputStream sImage;
         try {
- 
+            System.out.println("Servlet levantado");
             String id = request.getParameter("Image_id");
             System.out.println("inside servlet–>" + id);
             Conexion conn= new Conexion();
             Connection con = conn.getConexion();
             stmt = con.createStatement();
-            String strSql = "select image from upload_image where image_id='" + id + "' ";
+            String strSql = "select foto from usuarios where usuarios.id= '"+ id +"';";
             rs = stmt.executeQuery(strSql);
             if (rs.next()) {
                 byte[] bytearray = new byte[1048576];

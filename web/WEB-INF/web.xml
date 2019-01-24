@@ -13,7 +13,10 @@
         <servlet-name>Faces Servlet</servlet-name>
         <url-pattern>/faces/*</url-pattern>
     </servlet-mapping>
-    
+    <servlet-mapping>
+        <servlet-name>RenderImage</servlet-name>
+        <url-pattern>/views/RenderImage</url-pattern>
+    </servlet-mapping>
     <session-config>
         <session-timeout>
             30
@@ -26,36 +29,30 @@
         <param-name>primefaces.THEME</param-name>
         <param-value>dark-hive</param-value>
     </context-param>
-            <mime-mapping>
-    <extension>eot</extension>
-    <mime-type>application/vnd.ms-fontobject</mime-type>
-</mime-mapping>
-<mime-mapping>  
-    <extension>otf</extension>  
-    <mime-type>font/opentype</mime-type>  
-</mime-mapping>      
-<mime-mapping>  
-    <extension>ttf</extension>  
-    <mime-type>application/x-font-ttf</mime-type>  
-</mime-mapping>      
-<mime-mapping>  
-    <extension>woff</extension>  
-    <mime-type>application/x-font-woff</mime-type>  
-</mime-mapping>
-<mime-mapping>  
-    <extension>svg</extension>  
-    <mime-type>image/svg+xml</mime-type>  
-</mime-mapping>
-
-<servlet>
-        <description></description>
-        <display-name>DisplayImage</display-name>
-        <servlet-name>DisplayImage</servlet-name>
-        <servlet-class>Beans.DisplayImage</servlet-class>
+    <mime-mapping>
+        <extension>eot</extension>
+        <mime-type>application/vnd.ms-fontobject</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>otf</extension>
+        <mime-type>font/opentype</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>ttf</extension>
+        <mime-type>application/x-font-ttf</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>woff</extension>
+        <mime-type>application/x-font-woff</mime-type>
+    </mime-mapping>
+    <mime-mapping>
+        <extension>svg</extension>
+        <mime-type>image/svg+xml</mime-type>
+    </mime-mapping>
+    <servlet>
+        <description/>
+        <display-name>RenderImage</display-name>
+        <servlet-name>RenderImage</servlet-name>
+        <servlet-class>Beans.RenderImage</servlet-class>
     </servlet>
-    <servlet-mapping>
-        <servlet-name>DisplayImage</servlet-name>
-        <url-pattern>/DisplayImage</url-pattern>
-    </servlet-mapping>
-
 </web-app>
