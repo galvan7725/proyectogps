@@ -56,19 +56,19 @@
                         <p:column headerText="Estado" filterBy="#{u.estado}" filterMatchMode="contains" style="text-align: center;">
                             <p:outputLabel value="#{u.estado}"/>
                         </p:column>
-                        <!--
+                        
                         <p:column headerText="Util" exportable="false" style="text-align: center;">
-                            <p:commandLink  actionListener="#{categoriaBean.leerID(c)}" oncomplete="PF('wldDatos').show();" update=":DlgDatos" partialSubmit="false">
-                                <h:graphicImage library="images" name="edit2.jpg" title="Modificar"/>
+                            <p:commandLink   oncomplete="PF('wldDatos').show();" update=":DlgDatos" partialSubmit="false">
+                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/xls.png" width="24" title="Modificar" height="20"/>
                                 <p:outputLabel value="Modificar"/>
                             </p:commandLink>
                             <p:spacer height="20"/>
-                            <p:commandLink  actionListener="#{categoriaBean.leerID(c)}" oncomplete="PF('wldOp').show();" update="dataP" partialSubmit="false">
-                                <h:graphicImage library="images" name="Delete.png" title="Eliminar" width="20px" height="20px"/>
+                            <p:commandLink   oncomplete="PF('wldOp').show();" update="dataP" partialSubmit="false">
+                                <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/xls.png" width="24" title="Eliminar"  height="20px"/>
                                 <p:outputLabel value="Eliminar"/>
                             </p:commandLink>
                         </p:column>
-                        -->
+                        
                     </p:dataTable>
                 </h:form>  
 
