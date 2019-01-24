@@ -50,7 +50,7 @@
                         </p:column>
                         <p:column headerText="foto" style="text-align: center;">
                             
-                            <h:graphicImage value="RenderImage?Image_id=#{u.id}" width="70" height="50"></h:graphicImage>
+                            <h:graphicImage value="RenderImage?Image_id=#{u.id}&amp;contexto=usuarios" width="70" height="50"></h:graphicImage>
                            
                         </p:column>
                         <p:column headerText="Estado" filterBy="#{u.estado}" filterMatchMode="contains" style="text-align: center;">

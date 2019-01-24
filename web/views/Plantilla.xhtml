@@ -38,10 +38,10 @@
                         <f:facet name="right" >
                             <p:button value="Home" icon=" ui-icon-home " href="#{appBean.baseUrl}faces/views/Index.xhtml"/>
                             <p:spacer width="10" height="10" />
-                            <p:graphicImage id="img" url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" style="width: 50px; height: 100%; border-radius: 20%; margin-top: 5px;" ></p:graphicImage>
+                            <p:graphicImage id="img" value="RenderImage?Image_Id=0&amp;contexto=sesion"  style="width: 50px; height: 100%; border-radius: 20%; margin-top: 5px;" ></p:graphicImage>
                             <p:overlayPanel id="imgPanel" for="img" showEffect="blind" hideEffect="explode" showEvent="mouseover" hideEvent="mousedown"
                                             dismissable="true" showCloseIcon="true">                                                             
-                                <p:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" width="300" />                            
+                                <p:graphicImage value="RenderImage?Image_Id=0&amp;contexto=sesion" width="300" />                            
                             </p:overlayPanel>
                             <p:spacer width="10" height="10" />
                             <p:commandButton value="#{userBean.nombre}" icon="ui-icon-person" onclick="PF('dlg').show()"/>
@@ -50,7 +50,7 @@
                     </p:toolbar>
                     <p:dialog header="Effects" widgetVar="dlg" showEffect="explode" hideEffect="explode" width="400" height="350" resizable="false" closable="true">
                         <p:panel id="basic" header="#{userBean.foto}" footer="#{userBean.datos}"  style="text-align: center; margin-bottom:20px">
-                            <p:graphicImage url="#{appBean.baseUrl}resources/images/Users/#{userBean.foto}.jpg" width="100%"></p:graphicImage>
+                            <p:graphicImage value="RenderImage?Image_Id=0&amp;contexto=sesion" width="100%"></p:graphicImage>
                         </p:panel>
                         <p:button value="Usuarios" icon="ui-icon-person" href="#{appBean.baseUrl}faces/views/Usuarios.xhtml"/>
                         <p:commandButton value="Salir" action="#{loginController.borrarSession()}" icon=" ui-icon-power " style="float: right;" onclick="PF('dlg').hide()">

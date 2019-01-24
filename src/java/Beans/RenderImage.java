@@ -12,6 +12,7 @@ import java.io.InputStream;
 import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import javax.faces.context.FacesContext;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -21,10 +22,10 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author galva
  */
+public class RenderImage extends HttpServlet {
 
-    public class RenderImage extends HttpServlet {
     private static final long serialVersionUID = 4593558495041379083L;
- 
+
     @Override
     public void doGet(HttpServletRequest request,
             HttpServletResponse response)
@@ -35,27 +36,53 @@ import javax.servlet.http.HttpServletResponse;
         try {
             System.out.println("Servlet levantado");
             String id = request.getParameter("Image_id");
-            System.out.println("inside servlet–>" + id);
-            Conexion conn= new Conexion();
+            String contexto = request.getParameter("contexto");
+            Conexion conn = new Conexion();
             Connection con = conn.getConexion();
-            stmt = con.createStatement();
-            String strSql = "select foto from usuarios where usuarios.id= '"+ id +"';";
-            rs = stmt.executeQuery(strSql);
-            if (rs.next()) {
-                byte[] bytearray = new byte[1048576];
-                int size = 0;
-                sImage = rs.getBinaryStream(1);
-                response.reset();
-                response.setContentType("image/jpeg");
-                while ((size = sImage.read(bytearray)) != -1) {
-                    response.getOutputStream().
-                            write(bytearray, 0, size);
-                }
+            String strSql = null;
+            FacesContext context ;
+            switch (contexto) {
+                case "sesion":
+                    System.out.println("inside servlet–> contexto: " + contexto + "---->" + id);
+                   id = String.valueOf( FacesContext.getCurrentInstance().getExternalContext().getSessionMap().get("id"));
+                    stmt = con.createStatement();
+                     strSql = "select foto from usuarios where usuarios.id= '" + id + "';";
+                    rs = stmt.executeQuery(strSql);
+                    if (rs.next()) {
+                        byte[] bytearray = new byte[1048576];
+                        int size = 0;
+                        sImage = rs.getBinaryStream(1);
+                        response.reset();
+                        response.setContentType("image/jpeg");
+                        while ((size = sImage.read(bytearray)) != -1) {
+                            response.getOutputStream().
+                                    write(bytearray, 0, size);
+                        }
+                    }
+                    break;
+                case "usuarios":
+                    System.out.println("inside servlet–> contexto: " + contexto + "---->" + id);
+
+                    stmt = con.createStatement();
+                    strSql = "select foto from usuarios where usuarios.id= '" + id + "';";
+                    rs = stmt.executeQuery(strSql);
+                    if (rs.next()) {
+                        byte[] bytearray = new byte[1048576];
+                        int size = 0;
+                        sImage = rs.getBinaryStream(1);
+                        response.reset();
+                        response.setContentType("image/jpeg");
+                        while ((size = sImage.read(bytearray)) != -1) {
+                            response.getOutputStream().
+                                    write(bytearray, 0, size);
+                        }
+                    }
+                    break;
+
             }
- 
+
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 }
-
