@@ -5,8 +5,8 @@
  */
 package Beans;
 
-import Dao.UsuariosDao;
-import Model.Usuarios;
+import Dao.Usuarios_vistaDao;
+import Model.Usuarios_vista;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.bean.ApplicationScoped;
@@ -25,30 +25,30 @@ import javax.inject.Named;
 @ViewScoped
 public class usuariosBean implements Serializable{
     
-    private List<Usuarios> lstUsuarios;
-    private Usuarios usuarios = new Usuarios();
+    private List<Usuarios_vista> lstUsuarios;
+    private Usuarios_vista usuarios = new Usuarios_vista();
 
-    public List<Usuarios> getLstUsuarios() {
+    public List<Usuarios_vista> getLstUsuarios() {
         return lstUsuarios;
     }
 
-    public void setLstUsuarios(List<Usuarios> lstUsuarios) {
+    public void setLstUsuarios(List<Usuarios_vista> lstUsuarios) {
         this.lstUsuarios = lstUsuarios;
     }
 
-    public Usuarios getUsuarios() {
+    public Usuarios_vista getUsuarios() {
         return usuarios;
     }
 
-    public void setUsuarios(Usuarios usuarios) {
+    public void setUsuarios(Usuarios_vista usuarios) {
         this.usuarios = usuarios;
     }
     
-    public List<Usuarios> listar() throws Exception {
+    public List<Usuarios_vista> listar() throws Exception {
     
-        UsuariosDao dao;
+        Usuarios_vistaDao dao;
         try {
-            dao = new UsuariosDao();
+            dao = new Usuarios_vistaDao();
             this.lstUsuarios=dao.listar();
             return lstUsuarios;
             

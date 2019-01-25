@@ -9,32 +9,21 @@ package Model;
  *
  * @author galva
  */
-public class Usuarios {
-    private int id ;
+public class Personas {
+    
+    private int id_persona;
     private String nombre;
     private String aPaterno;
     private String aMaterno;
     private String fechaNac;
-    private String descrpcion;
-    private String foto;
-    private String descripcion;
+    private String telefono;
 
-    public String getDescripcion() {
-        return descripcion;
+    public int getId_persona() {
+        return id_persona;
     }
 
-    public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
-    }
-
-   
-    
-    public int getId() {
-        return id;
-    }
-
-    public void setId(int id) {
-        this.id = id;
+    public void setId_persona(int id_persona) {
+        this.id_persona = id_persona;
     }
 
     public String getNombre() {
@@ -69,21 +58,14 @@ public class Usuarios {
         this.fechaNac = fechaNac;
     }
 
-    public String getDescrpcion() {
-        return descrpcion;
+    public String getTelefono() {
+        return telefono;
     }
 
-    public void setDescrpcion(String descrpcion) {
-        this.descrpcion = descrpcion;
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
     }
-
-    public String getFoto() {
-        return foto;
-    }
-
-    public void setFoto(String foto) {
-        this.foto = foto;
-    }
+    
     
     
     

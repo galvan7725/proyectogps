@@ -5,7 +5,7 @@
  */
 package Dao;
 
-import Model.Usuarios;
+import Model.Usuarios_vista;
 import Util.Conexion;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -18,10 +18,10 @@ import java.util.List;
  *
  * @author galva
  */
-public class UsuariosDao {
+public class Usuarios_vistaDao {
     
-    public List<Usuarios> listar() throws SQLException{
-        List<Usuarios> lista;
+    public List<Usuarios_vista> listar() throws SQLException{
+        List<Usuarios_vista> lista;
         try {
             PreparedStatement ps = null;
             ResultSet rs = null;
@@ -35,7 +35,7 @@ public class UsuariosDao {
             lista= new ArrayList();
             
             while(rs.next()){
-            Usuarios users = new Usuarios();
+            Usuarios_vista users = new Usuarios_vista();
             users.setId(rs.getInt("id"));
             users.setNombre(rs.getString("nombre"));
             users.setaPaterno(rs.getString("aPaterno"));
