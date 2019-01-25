@@ -14,7 +14,7 @@
 
                 <h:form id="ft">
 
-                    <p:dataTable id="dataP" value="#{usuariosBean.listar()}" var="u" paginator="true" rows="5" paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                    <p:dataTable id="dataP" value="#{usuariosBean.listar()}" var="u" paginator="true" rows="5" paginatorTemplate="{Crud} {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                                  rowsPerPageTemplate="5,10,15" emptyMessage="Sin coincidencias" reflow="true" stickyHeader="false">
                         
                         <f:facet name="{Exporters}">
@@ -29,6 +29,12 @@
 
                         </f:facet>
                         
+                        <f:facet name="{Crud}">
+                            <h:commandLink id="Agregar" >
+                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24"/>
+                                <p:outputLabel value="Agregar"/>
+                            </h:commandLink>
+                        </f:facet>
                         
                         <p:column headerText="Id" filterBy="#{u.id}" filterMatchMode="contains" style="text-align: center;">    
                             <p:outputLabel value="#{u.id}"/>
@@ -48,7 +54,7 @@
                         <p:column headerText="Descripcion" filterBy="#{u.descrpcion}" filterMatchMode="contains" style="text-align: center;">
                             <p:outputLabel value="#{u.descrpcion}"/>
                         </p:column>
-                        <p:column headerText="foto" style="text-align: center;">
+                        <p:column headerText="foto" style="text-align: center;" exportable="false">
                             
                             <h:graphicImage value="RenderImage?Image_id=#{u.id}&amp;contexto=usuarios" width="70" height="50"></h:graphicImage>
                            
