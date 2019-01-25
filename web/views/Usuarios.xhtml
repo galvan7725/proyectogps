@@ -39,7 +39,7 @@
                         <p:column headerText="Apellido Paterno" filterBy="#{u.aPaterno}" filterMatchMode="contains" style="text-align: center;">
                             <p:outputLabel value="#{u.aPaterno}"/>
                         </p:column>
-                        <p:column headerText="Apellido Matero" filterBy="#{u.aMaterno}" filterMatchMode="contains" style="text-align: center;">
+                        <p:column headerText="Apellido Materno" filterBy="#{u.aMaterno}" filterMatchMode="contains" style="text-align: center;">
                             <p:outputLabel value="#{u.aMaterno}"/>
                         </p:column>
                         <p:column headerText="Fecha Nacimiento" filterBy="#{u.fechaNac}" filterMatchMode="contains" style="text-align: center;">
@@ -53,8 +53,8 @@
                             <h:graphicImage value="RenderImage?Image_id=#{u.id}&amp;contexto=usuarios" width="70" height="50"></h:graphicImage>
                            
                         </p:column>
-                        <p:column headerText="Estado" filterBy="#{u.estado}" filterMatchMode="contains" style="text-align: center;">
-                            <p:outputLabel value="#{u.estado}"/>
+                        <p:column headerText="Estado" filterBy="#{u.descripcion}" filterMatchMode="contains" style="text-align: center;">
+                            <p:outputLabel value="#{u.descripcion}"/>
                         </p:column>
                         
                         <p:column headerText="Util" exportable="false" style="text-align: center;">

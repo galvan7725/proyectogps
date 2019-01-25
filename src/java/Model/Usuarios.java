@@ -17,15 +17,17 @@ public class Usuarios {
     private String fechaNac;
     private String descrpcion;
     private String foto;
-    private int estado;
+    private String descripcion;
 
-    public int getEstado() {
-        return estado;
+    public String getDescripcion() {
+        return descripcion;
     }
 
-    public void setEstado(int estado) {
-        this.estado = estado;
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
+
+   
     
     public int getId() {
         return id;

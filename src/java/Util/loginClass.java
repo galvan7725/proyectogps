@@ -27,6 +27,7 @@ public class loginClass {
     public Object[] login(String nombre ,String claveo, int rol) throws Exception{
         String texto=claveo;
         String encript=DigestUtils.shaHex(texto);
+       
         Object[] obj = new Object[2]; 
         String [] res = new String[4];
         res= consultar_datos(nombre,encript,rol);

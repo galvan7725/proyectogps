@@ -43,7 +43,7 @@ public class UsuariosDao {
             users.setFechaNac(rs.getString("fechaNac"));
             users.setDescrpcion(rs.getString("descrpcion"));
             users.setFoto(rs.getString("nombre"));
-            users.setEstado(rs.getInt("estado"));
+            users.setDescripcion(rs.getString("descripcion"));
             
             
             lista.add(users);
