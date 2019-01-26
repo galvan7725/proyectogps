@@ -54,6 +54,29 @@ public class PersonasDao {
        
        return null;
    
-   } 
+   }
+   
+   public void isertar(Personas per) throws Exception{
+       try {
+            PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql = "insert into personas (nombre,aPaterno,aMaterno,fechaNac,telefono) values (?,?,?,?,?);";
+            System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            ps.setString(1, per.getNombre());
+            ps.setString(2, per.getaPaterno());
+            ps.setString(3, per.getaMaterno());
+            ps.setString(4, per.getFechaNac());
+            ps.setString(5, per.getTelefono());
+            
+            ps.executeUpdate();
+       } catch (Exception e) {
+       throw e;
+       }
+     
+   }
+   
    
 }

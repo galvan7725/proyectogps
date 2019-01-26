@@ -16,7 +16,7 @@
 
                     <p:dataTable id="dataP" value="#{usuariosBean.listar()}" var="u" paginator="true" rows="5" paginatorTemplate="{Crud} {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                                  rowsPerPageTemplate="5,10,15" emptyMessage="Sin coincidencias" reflow="true" stickyHeader="false">
-                        
+
                         <f:facet name="{Exporters}">
                             <h:commandLink>
                                 <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/pdf.png" width="24"/>
@@ -28,14 +28,14 @@
                             </h:commandLink>
 
                         </f:facet>
-                        
+
                         <f:facet name="{Crud}">
-                            <h:commandLink id="Agregar" >
-                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24"/>
+                            <p:commandLink id="Agregar" oncomplete="PF('dlgU').show();">
+                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" />
                                 <p:outputLabel value="Agregar"/>
-                            </h:commandLink>
+                            </p:commandLink>
                         </f:facet>
-                        
+
                         <p:column headerText="Id" filterBy="#{u.id}" filterMatchMode="contains" style="text-align: center;">    
                             <p:outputLabel value="#{u.id}"/>
                         </p:column>
@@ -55,14 +55,14 @@
                             <p:outputLabel value="#{u.descrpcion}"/>
                         </p:column>
                         <p:column headerText="foto" style="text-align: center;" exportable="false">
-                            
+
                             <h:graphicImage value="RenderImage?Image_id=#{u.id}&amp;contexto=usuarios" width="70" height="50"></h:graphicImage>
-                           
+
                         </p:column>
                         <p:column headerText="Estado" filterBy="#{u.descripcion}" filterMatchMode="contains" style="text-align: center;">
                             <p:outputLabel value="#{u.descripcion}"/>
                         </p:column>
-                        
+
                         <p:column headerText="Util" exportable="false" style="text-align: center;">
                             <p:commandLink     partialSubmit="false">
                                 <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/edit.png" width="24" title="Modificar" height="20"/>
@@ -74,8 +74,77 @@
                                 <p:outputLabel value="Eliminar"/>
                             </p:commandLink>
                         </p:column>
-                        
+
                     </p:dataTable>
+
+                    <p:dialog header="Agregar Usuarios" widgetVar="dlgU" showEffect="explode" hideEffect="explode" width="400" height="600" resizable="false"
+                              minimizable="true">
+                        <h:form >
+                            <p:commandLink oncomplete="PF('dlgLU').show();">
+                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" title="Persona ya existente"  height="20px"/>
+                                <p:outputLabel value="Persona ya existente" style="color: white;"/>
+                            </p:commandLink>
+                            <p:separator/>
+                            <p:outputLabel for="txtNombre" value="Nombre"/>
+                            <p:inputText id="txtNombre" value="#{categoriaBean.categoria.nombre}"/>
+                            <p:separator/>
+                            <p:outputLabel for="txtaP" value="Apellido Paterno"/>
+                            <p:inputText id="txtaP" value="#{categoriaBean.categoria.descripcion}"/>
+                            <p:separator/>
+                            <p:outputLabel for="txtaM" value="ApellidoMaerno"/>
+                            <p:inputText id="txtaM" value="#{categoriaBean.categoria.nombre}"/>
+                            <p:outputLabel for="txtfN" value="FechaNacimiento"/>
+                            <p:inputText id="txtDesc" value="#{categoriaBean.categoria.descripcion}"/>
+                        </h:form>
+                    </p:dialog>
+
+                    <p:dialog header="Lista de Personas" widgetVar="dlgLU" showEffect="explode" hideEffect="explode" width="700" height="400" resizable="false"
+                              minimizable="true">
+                        <h:form >
+
+                            <p:dataTable id="dataU" value="#{personasBean.listar()}" var="p" paginator="true" rows="5" paginatorTemplate=" {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
+                                         rowsPerPageTemplate="5,10,15" emptyMessage="Sin coincidencias" reflow="true" stickyHeader="false">
+
+                                <f:facet name="{Exporters}">
+                                    <h:commandLink>
+                                        <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/pdf.png" width="24"/>
+                                        <p:dataExporter type="pdf" target="dataP" fileName="Productos" pageOnly="true"/>
+                                    </h:commandLink>
+                                    <h:commandLink>
+                                        <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/xls.png" width="24"/>
+                                        <p:dataExporter type="xls" target="dataP" fileName="Productos" encoding="UTF-8" pageOnly="true"/>
+                                    </h:commandLink>
+
+                                </f:facet>
+                                <p:column headerText="Id" filterBy="#{p.id_persona}" filterMatchMode="contains" style="text-align: center;">    
+                                    <p:outputLabel value="#{p.id_persona}"/>
+                                </p:column>
+                                <p:column headerText="Nombre" filterBy="#{p.nombre}" filterMatchMode="contains" style="text-align: center;">
+                                    <p:outputLabel value="#{p.nombre}"/>
+                                </p:column>
+                                <p:column headerText="Apellido Paterno" filterBy="#{p.aPaterno}" filterMatchMode="contains" style="text-align: center;">
+                                    <p:outputLabel value="#{p.aPaterno}"/>
+                                </p:column>
+                                <p:column headerText="Apellido Materno" filterBy="#{p.aMaterno}" filterMatchMode="contains" style="text-align: center;">
+                                    <p:outputLabel value="#{p.aMaterno}"/>
+                                </p:column>
+                                <p:column headerText="Fecha Nacimiento" filterBy="#{p.fechaNac}" filterMatchMode="contains" style="text-align: center;">
+                                    <p:outputLabel value="#{p.fechaNac}"/>
+                                </p:column>
+                                <p:column headerText="Telefono" filterBy="#{p.telefono}" filterMatchMode="contains" style="text-align: center;">
+                                    <p:outputLabel value="#{p.telefono}"/>
+                                </p:column>
+                                <p:column headerText="Seleccionar" style="text-align: center;">
+                                    <p:commandLink >
+                                        <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/ch.png" width="24" title="Seleccionar"  height="20px"/>
+                                    </p:commandLink>
+                                </p:column>
+
+
+                            </p:dataTable>
+                        </h:form>
+                    </p:dialog>
+
                 </h:form>  
 
 
