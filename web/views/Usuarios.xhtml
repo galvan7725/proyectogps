@@ -93,8 +93,13 @@
                             <p:separator/>
                             <p:outputLabel for="txtaM" value="ApellidoMaerno"/>
                             <p:inputText id="txtaM" value="#{categoriaBean.categoria.nombre}"/>
+                            <p:separator/>
                             <p:outputLabel for="txtfN" value="FechaNacimiento"/>
-                            <p:inputText id="txtDesc" value="#{categoriaBean.categoria.descripcion}"/>
+                            <p:calendar  id="txtfN" value="#{calendarView.date3}" showOn="button" />
+                            <p:separator/>
+                            <p:outputLabel for="txtaT" value="Telefono"/>
+                            <p:inputText id="txtaT" value="#{categoriaBean.categoria.nombre}"/>
+                            
                         </h:form>
                     </p:dialog>
 

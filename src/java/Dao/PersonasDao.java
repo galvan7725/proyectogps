@@ -20,44 +20,43 @@ import java.util.List;
  * @author galva
  */
 public class PersonasDao {
-    
-   public List<Personas> listar()throws SQLException{
-      List<Personas> lista;
-       try {
-           PreparedStatement ps = null;
+
+    public List<Personas> listar() throws SQLException {
+        List<Personas> lista;
+        try {
+            PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
-            
-            String sql = "select * from personas;" ;
+
+            String sql = "select * from personas;";
             System.out.println("sql usuarios");
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
-            lista= new ArrayList();
-            
-             while(rs.next()){
-            Personas per = new Personas();     
-               per.setId_persona(rs.getInt("id_persona"));
-               per.setNombre(rs.getString("nombre"));
-               per.setaPaterno(rs.getString("aPaterno"));
-               per.setaMaterno(rs.getString("aMaterno"));
-               per.setFechaNac(rs.getString("fechaNac"));
-               per.setTelefono(rs.getString("telefono"));
-               
-            
-            lista.add(per);
+            lista = new ArrayList();
+
+            while (rs.next()) {
+                Personas per = new Personas();
+                per.setId_persona(rs.getInt("id_persona"));
+                per.setNombre(rs.getString("nombre"));
+                per.setaPaterno(rs.getString("aPaterno"));
+                per.setaMaterno(rs.getString("aMaterno"));
+                per.setFechaNac(rs.getString("fechaNac"));
+                per.setTelefono(rs.getString("telefono"));
+
+                lista.add(per);
             }
             return lista;
-       } catch (Exception e) {
-       e.printStackTrace();
-       }
-       
-       return null;
-   
-   }
-   
-   public void isertar(Personas per) throws Exception{
-       try {
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        return null;
+
+    }
+
+    public void isertar(Personas per) throws Exception {
+        try {
             PreparedStatement ps = null;
             ResultSet rs = null;
             Conexion conn = new Conexion();
@@ -70,13 +69,30 @@ public class PersonasDao {
             ps.setString(3, per.getaMaterno());
             ps.setString(4, per.getFechaNac());
             ps.setString(5, per.getTelefono());
-            
+
             ps.executeUpdate();
-       } catch (Exception e) {
-       throw e;
-       }
-     
-   }
-   
-   
+        } catch (Exception e) {
+            throw e;
+        }
+
+    }
+
+    public Personas LeerId(Personas per) throws Exception {
+
+        Personas pe = null;
+        PreparedStatement ps = null;
+        ResultSet rs = null;
+        Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        String sql = "select * from personas where id_persona = ?;";
+        ps = con.prepareStatement(sql);
+        rs = ps.executeQuery();
+        
+        while(rs.next()){
+        pe = new Personas();
+        
+        }
+        
+    }
+
 }
