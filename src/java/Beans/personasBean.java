@@ -9,7 +9,14 @@ import Dao.PersonasDao;
 import Model.Personas;
 import java.io.Serializable;
 import java.util.List;
+import javax.enterprise.context.ApplicationScoped;
+import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
+
+
+
+
+
 import javax.inject.Named;
 
 /**
@@ -51,5 +58,29 @@ public class personasBean implements Serializable{
         }
         
     }
+    
+    public void leerID(Personas per) throws Exception{
+       PersonasDao dao;
+       Personas p;
+        try {
+            dao= new PersonasDao();
+            p =dao.LeerId(per);
+            if(p != null){
+                System.out.println("Leer Id "+p.getId_persona());
+        personas = p;
+              
+                    System.out.println(String.valueOf(p.getNombre()));
+                
+            }else{
+                System.out.println("Id nulo");
+            }
+            
+            //FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje:", "Cambio exitoso");
+            //PrimeFaces.current().dialog().showMessageDynamic(message);
+        } catch (Exception e) {
+        throw e;
+        }
+               
+      }
     
 }

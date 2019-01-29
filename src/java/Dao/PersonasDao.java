@@ -23,11 +23,12 @@ public class PersonasDao {
 
     public List<Personas> listar() throws SQLException {
         List<Personas> lista;
+        Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
         try {
             PreparedStatement ps = null;
             ResultSet rs = null;
-            Conexion conn = new Conexion();
-            Connection con = conn.getConexion();
+            
 
             String sql = "select * from personas;";
             System.out.println("sql usuarios");
@@ -49,6 +50,8 @@ public class PersonasDao {
             return lista;
         } catch (Exception e) {
             e.printStackTrace();
+        }finally{
+        con.close();
         }
 
         return null;
@@ -56,11 +59,12 @@ public class PersonasDao {
     }
 
     public void isertar(Personas per) throws Exception {
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
         try {
             PreparedStatement ps = null;
             ResultSet rs = null;
-            Conexion conn = new Conexion();
-            Connection con = conn.getConexion();
+            
             String sql = "insert into personas (nombre,aPaterno,aMaterno,fechaNac,telefono) values (?,?,?,?,?);";
             System.out.println(sql);
             ps = con.prepareStatement(sql);
@@ -73,25 +77,47 @@ public class PersonasDao {
             ps.executeUpdate();
         } catch (Exception e) {
             throw e;
+        }finally{
+        con.close();
         }
 
     }
 
     public Personas LeerId(Personas per) throws Exception {
 
-        Personas pe = null;
+          Personas pe = null;
+          Conexion conn = new Conexion();
+        Connection con = conn.getConexion();
+        try {
+           
         PreparedStatement ps = null;
         ResultSet rs = null;
-        Conexion conn = new Conexion();
-        Connection con = conn.getConexion();
+        
         String sql = "select * from personas where id_persona = ?;";
         ps = con.prepareStatement(sql);
+        ps.setInt(1, per.getId_persona());
+            System.out.println("leer id :"+ String.valueOf(per.getId_persona()));
         rs = ps.executeQuery();
+        
         
         while(rs.next()){
         pe = new Personas();
+        pe.setId_persona(rs.getInt("id_persona"));
+        pe.setNombre(rs.getString("nombre"));
+        pe.setaPaterno(rs.getString("aPaterno"));
+        pe.setaMaterno(rs.getString("aMaterno"));
+        pe.setFechaNac(rs.getString("fechaNac"));
+        pe.setTelefono(rs.getString("telefono"));
         
         }
+         return pe;
+        } catch (Exception e) {
+            throw e;
+        }
+        finally{
+        con.close();
+        }
+      
         
     }
 
