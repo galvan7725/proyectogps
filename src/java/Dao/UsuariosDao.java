@@ -51,5 +51,31 @@ public List<Usuarios> listar() throws SQLException{
     }
 
 }
+
+ public void Insertar(Usuarios us) throws Exception{
+    
+        try {
+        PreparedStatement ps = null;
+            ResultSet rs = null;
+            Conexion conn = new Conexion();
+            Connection con = conn.getConexion();
+            String sql = "insert into usuarios values (?,?,?,?,?,?);";
+            System.out.println(sql);
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, 0);
+            ps.setInt(2, us.getId_persona());
+            ps.setInt(3, us.getId_rol());
+            ps.setString(4, us.getClave());
+            ps.setBytes(5, us.getFoto());
+            ps.setInt(6, us.getEstado_fk());           
+            ps.executeUpdate();
+            
+
+        } catch (Exception e) {
+            throw e;
+        }finally{
+        
+        }
+    }
     
 }
