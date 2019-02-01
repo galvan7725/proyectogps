@@ -39,6 +39,8 @@ public class verificarDuplicado {
     
     public int resultado(Object[] d) throws SQLException{
         int lastid=0;
+        int cont=0;
+        
          lastid=getLastId();
        Object[][] tabla = new Object[lastid][6];
        Conexion conn = new Conexion();
@@ -61,14 +63,22 @@ public class verificarDuplicado {
                 }
             i++;
             }
-            //Fin del rellenado de la tabla
+            //Fin del rellenado de la tabla, la tabla ya esta llena
             //Inicia la busqueda de campos iguales
             
-        } catch (Exception e) {
+            for(int y=0;y<lastid;y++){               
+                    if(d[1].toString().equals(tabla[y][1].toString()) && d[2].toString().equals(tabla[y][2].toString()) && d[2].toString().equals(tabla[y][2].toString())){
+                        cont ++;
+                    }              
+            }
+            System.err.println("Numero de campos repetidos");
+            return cont;
+            
+            
+        } catch (SQLException e) {
             throw e;
         }
         
-    return 0;
     }
     
     
