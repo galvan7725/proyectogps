@@ -67,7 +67,7 @@ public class verificarDuplicado {
             //Inicia la busqueda de campos iguales
             
             for(int y=0;y<lastid;y++){               
-                    if(d[1].toString().equals(tabla[y][1].toString()) && d[2].toString().equals(tabla[y][2].toString()) && d[2].toString().equals(tabla[y][2].toString())){
+                    if(d[1].toString().equals(tabla[y][1].toString()) && d[2].toString().equals(tabla[y][2].toString()) && d[3].toString().equals(tabla[y][3].toString())){
                         cont ++;
                     }              
             }

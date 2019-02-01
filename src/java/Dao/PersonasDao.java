@@ -58,7 +58,7 @@ public class PersonasDao {
 
     }
 
-    public void isertar(Personas per) throws Exception {
+    public void insertar(Personas per) throws Exception {
             Conexion conn = new Conexion();
             Connection con = conn.getConexion();
         try {

@@ -5,11 +5,22 @@
  */
 package Beans;
 
+import Dao.UsuariosDao;
 import Model.Usuarios;
+import Util.Herramientas;
+import Util.verificarDuplicado;
 import java.io.Serializable;
 import java.util.List;
 import javax.faces.view.ViewScoped;
 import javax.inject.Named;
+import Util.verificarDuplicado;
+import java.io.InputStream;
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import javax.faces.application.FacesMessage;
+import javax.faces.context.FacesContext;
+import org.primefaces.PrimeFaces;
+import org.primefaces.model.UploadedFile;
 
 /**
  *
@@ -20,7 +31,7 @@ import javax.inject.Named;
 public class userdbBean implements Serializable{
     private List<Usuarios> lstUsuarios;
     private Usuarios usuarios = new Usuarios();
-
+     private UploadedFile file;
     public List<Usuarios> getLstUsuarios() {
         return lstUsuarios;
     }
@@ -36,12 +47,45 @@ public class userdbBean implements Serializable{
     public void setUsuarios(Usuarios usuarios) {
         this.usuarios = usuarios;
     }
+
+    public UploadedFile getFile() {
+        return file;
+    }
+
+    public void setFile(UploadedFile file) {
+        this.file = file;
+    }
+    
     
     public void insertar()throws Exception{
-    Usuarios dao;
+    UsuariosDao dao;
         try {
-            dao = new Usuarios();
-            //
+            dao = new UsuariosDao();
+            personasBean p= new personasBean();
+            verificarDuplicado v = new verificarDuplicado();
+//
+            if(v.verificarPersona(p.getPersonas())){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta:", "Ya existe un usuario con ese nombre");
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+            }else{
+            p.registrar();
+            Herramientas h = new Herramientas();
+            int lastid= h.getLastIdPersonas();
+            if (file != null) {
+          
+                System.out.println(file.getFileName());
+                InputStream fin2 = file.getInputstream();
+                
+            dao.Insertar(usuarios,lastid, fin2, file.getSize() );
+                        
+                
+             
+        }
+        else{
+        FacesMessage msg = new FacesMessage("Please select image!!");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+            }
             
         } catch (Exception e) {
             throw e;

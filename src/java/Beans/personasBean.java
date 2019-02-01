@@ -10,6 +10,7 @@ import Model.Personas;
 import java.io.Serializable;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.SessionScoped;
 import javax.faces.view.ViewScoped;
 
@@ -18,6 +19,7 @@ import javax.faces.view.ViewScoped;
 
 
 import javax.inject.Named;
+import org.primefaces.PrimeFaces;
 
 /**
  *
@@ -82,5 +84,18 @@ public class personasBean implements Serializable{
         }
                
       }
+    
+    public void registrar() throws Exception{
+        PersonasDao dao;
+        try {
+            dao= new PersonasDao();
+            dao.insertar(personas);
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje:", "Ingreso Exitoso: Persona");
+         
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+        } catch (Exception e) {
+        throw e;
+        }
+    }
     
 }

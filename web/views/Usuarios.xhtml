@@ -82,27 +82,46 @@
                         <h:form id="form">
                             <p:panel widgetVar="pU">
                                 <p:commandLink onclick="PF('dlgU').hide();" oncomplete="PF('dlgLU').show();"  >
-                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" title="Persona ya existente"  height="20px"/>
-                                <p:outputLabel value="Persona ya existente" style="color: white;"/>
-                            </p:commandLink>
-                            <p:separator/>
-                            <p:outputLabel for="txtNombre" value="Nombre"/>
-                            <p:inputText id="txtNombre" value="#{personasBean.personas.nombre}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtaP" value="Apellido Paterno"/>
-                            <p:inputText id="txtaP" value="#{personasBean.personas.aPaterno}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtaM" value="ApellidoMaerno"/>
-                            <p:inputText id="txtaM" value="#{personasBean.personas.aMaterno}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtfN" value="FechaNacimiento"/>
-                            <p:calendar  id="txtfN" value="#{personasBean.personas.fechaNac}" showOn="button" />
-                            <p:separator/>
-                            <p:outputLabel for="txtaT" value="Telefono"/>
-                            <p:inputText id="txtaT" value="#{personasBean.personas.telefono}"/>
-                            
-                            
-                            
+                                    <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" title="Persona ya existente"  height="20px"/>
+                                    <p:outputLabel value="Persona ya existente" style="color: white;"/>
+                                </p:commandLink>
+                                <p:separator/>
+                                <p:outputLabel for="txtNombre" value="Nombre"/>
+                                <p:inputText id="txtNombre" value="#{personasBean.personas.nombre}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtaP" value="Apellido Paterno"/>
+                                <p:inputText id="txtaP" value="#{personasBean.personas.aPaterno}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtaM" value="ApellidoMaerno"/>
+                                <p:inputText id="txtaM" value="#{personasBean.personas.aMaterno}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtfN" value="FechaNacimiento"/>
+                                <p:calendar  id="txtfN" value="#{personasBean.personas.fechaNac}" showOn="button" />
+                                <p:separator/>
+                                <p:outputLabel for="txtaT" value="Telefono"/>
+                                <p:inputText id="txtaT" value="#{personasBean.personas.telefono}"/>
+                                <p:separator/>
+                                <h:outputText value="Rol:" />
+                                <p:selectOneButton value="#{userdbBean.usuarios.id_rol}">
+                                    <f:selectItem itemLabel="Usuario" itemValue="2" />
+                                    <f:selectItem itemLabel="Administrador" itemValue="1" />
+                                </p:selectOneButton>
+                                <p:separator/>
+                                <p:outputLabel for="txtc" value="Contraseña:"/>
+                                <p:inputText id="txtc" type="password" value="#{userdbBean.usuarios.clave}"/>
+                                <p:separator/>
+                                <p:outputLabel value="Foto: "/>
+                                <p:fileUpload value="#{userdbBean.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                <p:separator/>
+                                <p:selectOneButton value="#{userdbBean.usuarios.estado_fk}">
+                                    <f:selectItem itemLabel="Activo" itemValue="1" />
+                                    <f:selectItem itemLabel="Inactivo" itemValue="2" />
+                                </p:selectOneButton>
+                                <p:separator/>
+                                <p:commandButton value="Registrar" icon="ui-icon-check" actionListener="#{userdbBean.insertar()}" onclick="PF('dlgU').hide();" update="ft" style="float: left;"/>
+                                <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('dlgU').hide();" style="float: right;" />
+
+
                             </p:panel>
                         </h:form>
                     </p:dialog>
@@ -153,30 +172,53 @@
                             </p:dataTable>
                         </h:form>
                     </p:dialog>
-                    
+
                     <p:dialog header="Agregar Usuarios" widgetVar="dlgU2" showEffect="explode" hideEffect="explode" width="400" height="600" resizable="false"
                               minimizable="true" responsive="true" closable="true"  dynamic="true" >
                         <h:form id="form2">
                             <p:panel widgetVar="U">
                                 <p:commandLink  oncomplete="PF('dlgLU').show();"  >
-                                <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" title="Persona ya existente"  height="20px"/>
-                                <p:outputLabel value="Persona ya existente" style="color: white;"/>
-                            </p:commandLink>
-                            <p:separator/>
-                            <p:outputLabel for="txtNombre2" value="Nombre"/>
-                            <p:inputText id="txtNombre2" value="#{personasBean.personas.nombre}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtaP2" value="Apellido Paterno"/>
-                            <p:inputText id="txtaP2" value="#{personasBean.personas.aPaterno}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtaM2" value="ApellidoMaerno"/>
-                            <p:inputText id="txtaM2" value="#{personasBean.personas.aMaterno}"/>
-                            <p:separator/>
-                            <p:outputLabel for="txtfN2" value="FechaNacimiento"/>
-                            <p:calendar  id="txtfN2" value="#{personasBean.personas.fechaNac}" showOn="button" />
-                            <p:separator/>
-                            <p:outputLabel for="txtaT2" value="Telefono"/>
-                            <p:inputText id="txtaT2" value="#{personasBean.personas.telefono}"/>
+                                    <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" title="Persona ya existente"  height="20px"/>
+                                    <p:outputLabel value="Persona ya existente" style="color: white;"/>
+                                </p:commandLink>
+                                <p:separator/>
+                                <p:outputLabel for="txtNombre2" value="Nombre"/>
+                                <p:inputText id="txtNombre2" value="#{personasBean.personas.nombre}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtaP2" value="Apellido Paterno"/>
+                                <p:inputText id="txtaP2" value="#{personasBean.personas.aPaterno}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtaM2" value="ApellidoMaerno"/>
+                                <p:inputText id="txtaM2" value="#{personasBean.personas.aMaterno}"/>
+                                <p:separator/>
+                                <p:outputLabel for="txtfN2" value="FechaNacimiento"/>
+                                <p:calendar  id="txtfN2" value="#{personasBean.personas.fechaNac}" showOn="button" />
+                                <p:separator/>
+                                <p:outputLabel for="txtaT2" value="Telefono"/>
+                                <p:inputText id="txtaT2" value="#{personasBean.personas.telefono}"/>
+                                <p:separator/>
+                               
+                                 <h:outputText value="Rol:" />
+                                <p:selectOneButton value="#{userdbBean.usuarios.id_rol}">
+                                    <f:selectItem itemLabel="Usuario" itemValue="2" />
+                                    <f:selectItem itemLabel="Administrador" itemValue="1" />
+                                </p:selectOneButton>
+                                <p:separator/>
+                                <p:outputLabel for="txtc2" value="Contraseña:"/>
+                                <p:inputText id="txtc2" type="password" value="#{userdbBean.usuarios.clave}"/>
+                                <p:separator/>
+                                <p:outputLabel value="Foto: "/>
+                                <p:fileUpload value="#{userdbBean.file}" mode="simple" allowTypes="/(\.|\/)(gif|jpe?g|png)$/"/>
+                                <p:separator/>
+                                <p:selectOneButton value="#{userdbBean.usuarios.estado_fk}">
+                                    <f:selectItem itemLabel="Activo" itemValue="1" />
+                                    <f:selectItem itemLabel="Inactivo" itemValue="2" />
+                                </p:selectOneButton>
+                                <p:separator/>
+                                <p:commandButton value="Registrar" icon="ui-icon-check" actionListener="#{userdbBean.insertar()}" onclick="PF('dlgU2').hide();" update="ft" style="float: left;"/>
+                                <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('dlgU2').hide();" style="float: right;" />
+
+                                
                             </p:panel>
                         </h:form>
                     </p:dialog>
