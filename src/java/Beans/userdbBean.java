@@ -60,32 +60,32 @@ public class userdbBean implements Serializable{
     public void insertar()throws Exception{
     UsuariosDao dao;
         try {
-//            dao = new UsuariosDao();
-//            personasBean p= new personasBean();
-//            verificarDuplicado v = new verificarDuplicado();
-////
-//            if(v.verificarPersona(p.getPersonas())){
-//            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta:", "Ya existe un usuario con ese nombre");
-//            PrimeFaces.current().dialog().showMessageDynamic(message);
-//            }else{
-//            p.insertar();
-//            Herramientas h = new Herramientas();
-//            int lastid= h.getLastIdPersonas();
-//            if (file != null) {
-//          
-//                System.out.println(file.getFileName());
-//                InputStream fin2 = file.getInputstream();
-//                
-//            dao.Insertar(usuarios,lastid, fin2, file.getSize() );
-//                        
-//                
-//             
-//        }
-//        else{
-//        FacesMessage msg = new FacesMessage("Please select image!!");
-//                FacesContext.getCurrentInstance().addMessage(null, msg);
-//        }
-//            }
+            dao = new UsuariosDao();
+            personasBean p= new personasBean();
+            verificarDuplicado v = new verificarDuplicado();
+//
+            if(v.verificarPersona(p.getPersonas())){
+            FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Alerta:", "Ya existe un usuario con ese nombre");
+            PrimeFaces.current().dialog().showMessageDynamic(message);
+            }else{
+            p.insertar();
+            Herramientas h = new Herramientas();
+            int lastid= h.getLastIdPersonas();
+            if (file != null) {
+          
+                System.out.println(file.getFileName());
+                InputStream fin2 = file.getInputstream();
+                
+            dao.Insertar(usuarios,lastid, fin2, file.getSize() );
+                        
+                
+             
+        }
+        else{
+        FacesMessage msg = new FacesMessage("Please select image!!");
+                FacesContext.getCurrentInstance().addMessage(null, msg);
+        }
+            }
             
         } catch (Exception e) {
             throw e;

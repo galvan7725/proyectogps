@@ -13,7 +13,7 @@
             <ui:define name="content">
 
                 <h:form id="ft">
-                    <p:growl id="msj" autoUpdate="true"></p:growl>
+                    
                     <p:dataTable id="dataP" value="#{usuariosBean.listar()}" var="u" paginator="true" rows="5" paginatorTemplate="{Crud} {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters}"
                                  rowsPerPageTemplate="5,10,15" emptyMessage="Sin coincidencias" reflow="true" stickyHeader="false">
 
@@ -69,7 +69,7 @@
                                 <p:outputLabel value="Modificar"/>
                             </p:commandLink>
                             <p:spacer height="20"/>
-                            <p:commandLink    update="dataP" partialSubmit="false">
+                            <p:commandLink     partialSubmit="false">
                                 <h:graphicImage url="#{appBean.baseUrl}resources/images/icons/exit.png" width="24" title="Eliminar"  height="20px"/>
                                 <p:outputLabel value="Eliminar"/>
                             </p:commandLink>
@@ -119,16 +119,16 @@
                                     <f:selectItem itemLabel="Inactivo" itemValue="2" />
                                 </p:selectOneButton>
                                 <p:separator/>
-                                <p:commandButton value="Registrar" icon="ui-icon-check" actionListener="#{userdbBean.insertar()}" update="msj" onclick="PF('dlgU').hide();"  style="float: left;"/>
+                                <p:commandButton value="Registrar" icon="ui-icon-check" actionListener="#{userdbBean.insertar()}"  onclick="PF('dlgU').hide();"  style="float: left;"/>
                                 <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('dlgU').hide();" style="float: right;" />
 
 
                             </p:panel>
                         </h:form>
                     </p:dialog>
-                    <h:form id="form_dlg_lp">
+                   
                         <p:dialog header="Lista de Personas" widgetVar="dlgLU" showEffect="explode" hideEffect="explode" width="700" height="400" resizable="false"
-                                  minimizable="true" responsive="true">
+                                  minimizable="true" responsive="true" dynamic="true">
                             <h:form id="dlgtp">
 
                                 <p:dataTable id="dataU" value="#{personasBean.listar()}" var="p" paginator="true" rows="5" paginatorTemplate=" {CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown} {Exporters} {Crud}"
@@ -146,7 +146,7 @@
 
                                     </f:facet>
                                     <f:facet name="{Crud}">
-                                        <p:commandLink id="Agregar" onclick="PF('dlgLU').hide();" oncomplete="PF('dlgAP').show();" style="color: white;">
+                                        <p:commandLink id="Agregar"  oncomplete="PF('dlgAP').show();" style="color: white;">
                                             <p:graphicImage url="#{appBean.baseUrl}resources/images/icons/addUser.png" width="24" />
                                             <p:outputLabel value="Agregar"/>
                                         </p:commandLink>
@@ -181,7 +181,7 @@
                    
                         </p:dialog>
                         <p:dialog header="Agregar Persona" widgetVar="dlgAP" showEffect="explode" hideEffect="explode" width="500" height="400" resizable="false"
-                                  minimizable="true" responsive="true">
+                                  minimizable="true" responsive="true" dynamic="false" >
 
                             <h:form>
                                 <p:separator/>
@@ -200,13 +200,13 @@
                                 <p:outputLabel for="txtaT3" value="Telefono: "/>
                                 <p:inputText id="txtaT3" value="#{personasBean.personas.telefono}"  required="true"/>
                                 <p:separator/>
-                                <p:commandButton async="true" value="Registrar" icon="ui-icon-check" actionListener="#{personasBean.insertar()}" onclick="PF('dlgAP').hide();" style="float: left;"/>
+                                <p:commandButton form="ft"  value="Registrar" icon="ui-icon-check" actionListener="#{personasBean.insertar()}" onclick="PF('dlgAP').hide();" style="float: left;"/>
                                 <p:commandButton value="Cancelar" icon="ui-icon-close" immediate="true" onclick="PF('dlgAP').hide();" style="float: right;" />
                             </h:form>
                         </p:dialog>
                         
-                    </h:form>
-                    <h:form id="formdlg2">
+                    
+                    
                         <p:dialog header="Agregar Usuarios" widgetVar="dlgU2" showEffect="explode" hideEffect="explode" width="400" height="600" resizable="false"
                                   minimizable="true" responsive="true" closable="true"  dynamic="true" >
                             <h:form id="form2">
@@ -256,7 +256,7 @@
                                 </p:panel>
                             </h:form>
                         </p:dialog>
-                    </h:form>
+                    
 
 
 

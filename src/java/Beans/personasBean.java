@@ -8,6 +8,7 @@ package Beans;
 import Dao.PersonasDao;
 import Model.Personas;
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 import javax.enterprise.context.ApplicationScoped;
 import javax.faces.application.FacesMessage;
@@ -85,7 +86,7 @@ public class personasBean implements Serializable{
                
       }
     
-    public void insertar() {
+    public void insertar() throws SQLException, Exception{
         PersonasDao dao;
         try {
             dao= new PersonasDao();
@@ -94,9 +95,9 @@ public class personasBean implements Serializable{
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje:", "Ingreso Exitoso: Persona");
          
             PrimeFaces.current().dialog().showMessageDynamic(message);
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.err.println("error insertar persona");
-
+            throw e;
         }
     }
     
