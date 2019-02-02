@@ -85,16 +85,18 @@ public class personasBean implements Serializable{
                
       }
     
-    public void registrar() throws Exception{
+    public void insertar() {
         PersonasDao dao;
         try {
             dao= new PersonasDao();
             dao.insertar(personas);
+            System.err.println("Insertar persona");
             FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Mensaje:", "Ingreso Exitoso: Persona");
          
             PrimeFaces.current().dialog().showMessageDynamic(message);
         } catch (Exception e) {
-        throw e;
+            System.err.println("error insertar persona");
+
         }
     }
     
